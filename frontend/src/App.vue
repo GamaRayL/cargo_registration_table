@@ -1,19 +1,17 @@
 <template>
   <!--  <navbar></navbar>-->
-  <div class="app"></div>
+  <h1 style="margin-bottom: 60px"></h1>
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script setup>
 </script>
 
-<style lang="scss" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+<style scoped>
 .app {
-  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 </style>
