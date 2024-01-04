@@ -1,6 +1,6 @@
 <template>
   <custom-table
-      :data="arrivalRegistrations"
+      :data="shipments"
   >
   </custom-table>
 </template>
@@ -8,15 +8,23 @@
 <script>
 
 import CustomTable from "@/components/UI/CustomTable/CustomTable.vue";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {CustomTable},
   computed: {
     ...mapState({
-      arrivalRegistrations: state => state.entry.arrivalRegistrations
+      shipments: state => state.entry.shipments
     })
-  }
+  },
+  methods: {
+    ...mapActions({
+      fetchShipments: 'entry/fetchShipments'
+    })
+  },
+  mounted() {
+    this.fetchShipments()
+  },
 }
 </script>
 

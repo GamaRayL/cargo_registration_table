@@ -4,6 +4,7 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView
 
 from shipments.filters import ShipmentContainsFilter
 from shipments.models import Shipment
+from shipments.paginations import ShipmentPagination
 from shipments.serializers import ShipmentSerializer
 
 
@@ -25,6 +26,7 @@ class ShipmentListAPIView(ListAPIView):
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filterset_class = ShipmentContainsFilter
     ordering_fields = ['date', 'time', 'category', 'in_stock', 'vendor', 'counted', 'driver']
+    pagination_class = ShipmentPagination
 
 
 class ShipmentDetailsAPIView(RetrieveAPIView):
