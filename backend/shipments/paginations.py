@@ -2,6 +2,5 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class ShipmentPagination(PageNumberPagination):
-    page_size = 5
-    page_size_query_param = 'page_size'
+    page_size_query_param = 'limit'
     max_page_size = 100

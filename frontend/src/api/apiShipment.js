@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_URL} from "@/constants";
+import {API_URL} from "../constants.js";
 
 export function pathShipment(data) {
     return axios.patch(`${API_URL}/shipments/`, data)

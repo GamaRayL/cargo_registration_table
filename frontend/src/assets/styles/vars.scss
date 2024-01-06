@@ -1,19 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 :root {
   // Decoration
   --с-bgColorTitle: #ffd966;
-  --c-border: rgba(140, 140, 140, 0.38);
+  --c-gray: rgba(140, 140, 140, 0.38);
 
   // Typographic
-  --f-family: 'Amatic SC', sans-serif;
+  --f-familyTitle: 'Amatic SC', sans-serif;
+  --f-familyMain: 'Roboto', sans-serif;
 
   --f-weight-regular: 400;
+  --f-weight-medium: 500;
 
   --f-size-10: 10px;
   --f-size-12: 12px;
   --f-size-14: 14px;
   --f-size-16: 16px;
+  --f-size-18: 18px;
   --f-size-20: 20px;
   --f-size-22: 22px;
   --f-size-24: 24px;

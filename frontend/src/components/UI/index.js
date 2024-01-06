@@ -1,4 +1,4 @@
-import CustomTable from "@/components/UI/CustomTable/CustomTable.vue";
+import CustomTable from "@/components/widgets/CustomTable/CustomTable.vue";
 
 
 export default [

@@ -2,8 +2,7 @@
   <tr>
     <td
         class="table__data"
-        v-for="[key, value] of filteredEntries"
-        :key="key"
+        :key="key" v-for="[key, value] of filteredEntries"
     >
       <input
           class="table__input"
@@ -11,6 +10,7 @@
           ref="inputRef"
           @change="updateInput(key, $event.target.value)"
           type="text"
+          :name="key"
       >
     </td>
   </tr>
@@ -29,25 +29,25 @@ export default {
   methods: {
     updateInput(key, newValue) {
       this.$store.commit('entry/updateFieldValue', {id: this.item.id, key, newValue});
-    }
+    },
   },
   computed: {
     filteredEntries() {
       return Object.entries(this.item).filter(([key]) => key !== 'id');
     },
-  }
+  },
+
 }
 </script>
 
 <style lang="scss" scoped>
 .table {
   &__data {
-    border: 1px solid var(--c-border);
+    border: 1px solid var(--c-gray);
   }
 
   &__input {
     border: 0;
-    font-style: italic;
 
     padding: 2px;
     width: 100%;

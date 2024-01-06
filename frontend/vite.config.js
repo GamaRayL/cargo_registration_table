@@ -11,6 +11,6 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
             '@styles': path.resolve(__dirname, './src/assets/styles'),
         },
-        extensions: ['.js', 'json', '.vue']
+        extensions: ['.js', '.json', '.vue'],
     }
 })
