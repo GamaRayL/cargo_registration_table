@@ -33,7 +33,7 @@ class ShipmentDeleteAPIView(DestroyAPIView):
 
 class ShipmentListAPIView(ListAPIView):
     serializer_class = ShipmentSerializer
-    queryset = Shipment.objects.all().order_by('id')
+    queryset = Shipment.objects.all().order_by('-id')
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter, ]
     filterset_class = ShipmentContainsFilter
     search_fields = ['date', 'time', 'label', 'document', 'vendor', 'declared', 'accepted', 'counted', 'driver']
