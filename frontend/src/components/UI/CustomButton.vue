@@ -1,5 +1,6 @@
 <template>
   <button
+      class="button"
       :type="type"
   >
     <slot></slot>
@@ -18,5 +19,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  border: none;
+  background: inherit;
+}
 </style>

@@ -1,17 +1,22 @@
 <template>
   <div class="wrapper">
+    <button @click="changeSort()">Сброс сортировки</button>
     <table class="table">
       <tr class="table__rowTitle">
         <th
             class="table__header"
             v-for="item in sortOptions"
         >
-          <label @click="changeSort(item.value)"
-                 style="cursor: pointer; padding: 4px 14px; width: 100%; display: block; margin: 0 2px">{{ item.name }}
+          <label
+              v-if="item.value !== 'left'"
+              @click="changeSort(item.value)"
+              style="cursor: pointer; padding: 4px 14px; width: 100%; display: block; margin: 0 2px"
+          >
+            {{ item.name }}
             <sort-from-top-to-bottom v-if="sort === item.value" width="18" height="18"/>
             <sort-from-bottom-to-top v-else width="18" height="18"/>
           </label>
-
+          <label v-else>{{ item.name }}</label>
         </th>
       </tr>
       <custom-table-row
@@ -19,6 +24,7 @@
           :item="item"
           :key="item.id"
       >
+        1
       </custom-table-row>
     </table>
   </div>
@@ -81,7 +87,7 @@ export default {
   }
 
   &__rowTitle {
-    background-color: var(--с-bgColorTitle);
+    background-color: var(--с-orange);
     font-size: var(--f-size-30);
   }
 }

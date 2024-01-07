@@ -1,5 +1,6 @@
 <template>
   <select
+      class="select"
       :value="modelValue"
       @change="changeOption"
   >

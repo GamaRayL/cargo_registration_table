@@ -1,11 +1,10 @@
 <template>
   <input
-      :value="modelValue"
-      @change="changeInptut"
-      type="text"
       name=""
-      id=""
-      placeholder="Поиск..."
+      @change="changeInptut"
+      :value="modelValue"
+      :placeholder="placeholder"
+      :type="type"
   >
 </template>
 
@@ -14,6 +13,14 @@ export default {
   props: {
     modelValue: {
       type: String,
+    },
+    type: {
+      type: String,
+      default: 'text'
+    },
+    placeholder: {
+      type: String,
+      default: "Ввод"
     }
   },
   methods: {

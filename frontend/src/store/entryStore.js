@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_URL, SORT_OPTIONS, STATEMENTS} from "@/constants";
+import {API_URL, SORT_OPTIONS} from "@/constants";
 
 
 export const entryStore = {
@@ -16,14 +16,18 @@ export const entryStore = {
         filterStatement: '',
         filterProperty: '',
         filterValue: '',
-        statements: STATEMENTS,
-        // filterOptions: FILTER_OPTIONS
     }),
     getters: {
-        // statementByColumn(state) {
-        //     const option = state.sortOptions.filter(i => i.value === state.filterProperty);
-        //     return option && option.statement;
-        // }
+        statementByColumn(state) {
+            if (state.filterProperty) {
+                const option = state.sortOptions.filter(i => i.value === state.filterProperty);
+                return option && option[0].statement.list;
+            }
+            return [];
+        },
+        sortOptionsWithoutLeft(state) {
+            return state.sortOptions.filter(i => i.value !== 'left')
+        }
     },
     mutations: {
         setLoading(state, bool) {
@@ -49,13 +53,30 @@ export const entryStore = {
         },
         setFilterProperty(state, filterProperty) {
             state.filterProperty = filterProperty;
-        }
+        },
         // updateFieldValue(state, {id, key, newValue}) {
         //     const foundItem = state.shipments.find(registration => registration.id === id);
+        //     console.log(foundItem)
         //     if (foundItem) foundItem[key] = newValue;
         // }
     },
     actions: {
+        async deleteShipment({state, commit, dispatch}, {id}) {
+            try {
+                await axios.delete(`${API_URL}/shipments/delete/${id}/`)
+                dispatch('fetchShipments');
+            } catch (error) {
+                console.error('Ошибка удаления строки отгрузки:', error);
+            }
+        },
+        async updateShipment({state, commit, dispatch}, {id, data}) {
+            try {
+                await axios.patch(`${API_URL}/shipments/update/${id}/`, data);
+                dispatch('fetchShipments');
+            } catch (error) {
+                console.error('Ошибка изменения значения:', error);
+            }
+        },
         async fetchShipments({state, commit}) {
             try {
                 commit('setLoading', true);
@@ -66,14 +87,18 @@ export const entryStore = {
                     ordering: state.sort,
                 }
 
-                params[state.filterProperty + state.filterStatement] = state.filterValue
+
+                if (state.filterStatement) {
+                    params[state.filterProperty + state.filterStatement] = state.filterValue
+                }
+
                 const response = await axios.get(`${API_URL}/shipments/`, {params});
                 const data = response.data
 
                 commit('setTotalPages', Math.ceil(data.count / state.limit))
                 commit('setShipments', data.results);
-            } catch (e) {
-                console.log(e)
+            } catch (error) {
+                console.log(error)
             } finally {
                 commit('setLoading', false)
             }

@@ -1,80 +1,98 @@
 <template>
-  <div>
-    <form action="" @submit.prevent="handleSubmit">
+  <div class="toolbar">
+    <form class="form" @submit.prevent="fetchData">
       <custom-select
           name="property-select"
           label="Выберите колонку"
           v-model="localFilterProperty"
-          :options="sortOptions"
+          :options="sortOptionsWithoutLeft"
       />
       <custom-select
           name="statement-select"
           label="Выберите условие"
           v-model="localFilterStatement"
-          :options="statements"
+          :options="statementByColumn"
+          v-if="localFilterProperty && statementByColumn.length > 0"
       />
-      <custom-input name="value-select" v-model="localFilterValue"></custom-input>
-      <custom-button @submit.prevent="handleSubmit" type="submit">Получить</custom-button>
-      <custom-button @submit.prevent="handleReset" type="submit">Сброс</custom-button>
+      <custom-input
+          name="value-select"
+          v-model="localFilterValue"
+          v-if="localFilterStatement"
+      />
+      <custom-button @submit.prevent="fetchData" type="submit">Получить</custom-button>
+      <custom-button @click.prevent="resetData">Сброс</custom-button>
     </form>
   </div>
 </template>
 
 <script>
 import CustomSelect from "@/components/UI/CustomSelect";
-import CustomInput from "@/components/UI/CustomInput.vue";
-import CustomButton from "@/components/UI/CustomButton.vue";
+import CustomInput from "@/components/UI/CustomInput";
+import CustomButton from "@/components/UI/CustomButton";
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   components: {CustomButton, CustomInput, CustomSelect},
   data() {
     return {
-      localFilterProperty: '',
-      localFilterStatement: '',
-      localFilterValue: ''
+      localFilterProperty: "",
+      localFilterStatement: "",
+      localFilterValue: "",
     };
   },
   computed: {
-    ...mapState('entry', {
-      sortOptions: state => state.sortOptions,
-      filterStatement: state => state.filterStatement,
-      filterValue: state => state.filterValue,
-      filterProperty: state => state.filterProperty,
-      statements: state => state.statements
-    }),
+    ...mapState('entry', ['sortOptions', 'filterStatement', 'filterValue', 'filterProperty']),
     ...mapGetters('entry', {
-      // statementByColumn: "statementByColumn"
-    })
+      statementByColumn: 'statementByColumn',
+      sortOptionsWithoutLeft: 'sortOptionsWithoutLeft'
+    }),
+    // stbycol() {
+    //   if (this.localFilterProperty) {
+    //     const option = this.sortOptions.filter(i => i.value === this.localFilterProperty);
+    //     return option && option[0].statement.list;
+    //   }
+    //   return [];
+    // }
   },
   methods: {
-    ...mapMutations('entry', {
-      setFilterStatement: 'setFilterStatement',
-      setFilterValue: 'setFilterValue',
-      setFilterProperty: 'setFilterProperty'
-    }),
-    ...mapActions('entry', {
-      fetchShipments: 'fetchShipments'
-    }),
-    handleSubmit() {
+    ...mapMutations('entry', ['setFilterStatement', 'setFilterValue', 'setFilterProperty']),
+    ...mapActions('entry', ['fetchShipments']),
+    fetchData() {
       this.setFilterProperty(this.localFilterProperty);
       this.setFilterStatement(this.localFilterStatement);
       this.setFilterValue(this.localFilterValue);
       this.fetchShipments();
-      // this.localFilterProperty = '';
-      // this.localFilterStatement = '';
-      // this.localFilterValue = '';
     },
-    handleReset() {
+    resetData() {
       this.setFilterProperty('');
       this.setFilterStatement('');
       this.setFilterValue('');
+      this.localFilterProperty = '';
+      this.localFilterStatement = '';
+      this.localFilterValue = '';
       this.fetchShipments();
+    }
+  },
+  mounted() {
+    this.localFilterProperty = this.filterProperty;
+    this.localFilterStatement = this.filterStatement;
+    this.localFilterValue = this.filterValue;
+  },
+  watch: {
+    localFilterProperty() {
+      this.setFilterProperty(this.localFilterProperty);
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.toolbar {
+  margin-bottom: 10px;
+}
 
+.form {
+  display: flex;
+  gap: 4px;
+}
 </style>
