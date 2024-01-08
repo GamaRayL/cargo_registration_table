@@ -27,7 +27,7 @@ services:
       context: ./frontend/
     ports:
       - "5173:5173"
-    command: npm run dev
+    command: bash -c 'sleep 5 && npm run dev'
     volumes:
       - ./frontend:/app
     depends_on:

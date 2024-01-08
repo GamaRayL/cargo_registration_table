@@ -1,10 +1,12 @@
-FROM node:16
+FROM node:lts
 LABEL authors="Гамид"
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./package.json .
 
 RUN npm install
 
 COPY . .
+
+CMD ["npm", "run", "dev"]
