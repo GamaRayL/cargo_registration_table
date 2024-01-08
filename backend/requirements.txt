@@ -1,0 +1,8 @@
+coverage
+Django
+django-cors-headers
+django-filter
+djangorestframework
+pillow
+psycopg2-binary
+python-dotenv

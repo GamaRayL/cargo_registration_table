@@ -23,3 +23,5 @@ class ShipmentSerializer(ModelSerializer):
             return declared
         elif accepted:
             return -accepted
+        else:
+            return None
