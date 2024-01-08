@@ -1,5 +1,8 @@
 <template>
   <div class="toolbar">
+    <custom-button @click="createShipment">
+      <svg-add height="20" width="20"/>
+    </custom-button>
     <form class="form" @submit.prevent="fetchData">
       <custom-select
           name="property-select"
@@ -30,9 +33,10 @@ import CustomSelect from "@/components/UI/CustomSelect";
 import CustomInput from "@/components/UI/CustomInput";
 import CustomButton from "@/components/UI/CustomButton";
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
+import SvgAdd from "@/components/svg/SvgAdd.vue";
 
 export default {
-  components: {CustomButton, CustomInput, CustomSelect},
+  components: {SvgAdd, CustomButton, CustomInput, CustomSelect},
   data() {
     return {
       localFilterProperty: "",
@@ -56,7 +60,7 @@ export default {
   },
   methods: {
     ...mapMutations('entry', ['setFilterStatement', 'setFilterValue', 'setFilterProperty']),
-    ...mapActions('entry', ['fetchShipments']),
+    ...mapActions('entry', ['fetchShipments', 'createShipment']),
     fetchData() {
       this.setFilterProperty(this.localFilterProperty);
       this.setFilterStatement(this.localFilterStatement);

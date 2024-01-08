@@ -1,11 +1,11 @@
 import {createStore} from 'vuex'
-import {entryStore} from "@/store/entryStore.js";
+import {shipmentStore} from "@/store/shipmentStore.js";
 import createPersistedState from "vuex-persistedstate";
 
 
 export default createStore({
     modules: {
-        entry: entryStore
+        entry: shipmentStore
     },
     plugins: [
         createPersistedState({

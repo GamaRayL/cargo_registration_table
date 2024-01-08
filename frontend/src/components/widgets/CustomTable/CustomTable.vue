@@ -13,8 +13,8 @@
               style="cursor: pointer; padding: 4px 14px; width: 100%; display: block; margin: 0 2px"
           >
             {{ item.name }}
-            <sort-from-top-to-bottom v-if="sort === item.value" width="18" height="18"/>
-            <sort-from-bottom-to-top v-else width="18" height="18"/>
+            <svg-sort-to-bottom v-if="sort === item.value" width="18" height="18"/>
+            <svg-sort-to-top v-else width="18" height="18"/>
           </label>
           <label v-else>{{ item.name }}</label>
         </th>
@@ -34,11 +34,11 @@
 
 import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow/index.js";
 import {mapActions, mapMutations, mapState} from "vuex";
-import SortFromBottomToTop from "@/components/svg/sortFromBottomToTop.vue";
-import SortFromTopToBottom from "@/components/svg/sortFromTopToBottom.vue";
+import SvgSortToTop from "@/components/svg/SvgSortToTop.vue";
+import SvgSortToBottom from "@/components/svg/SvgSortToBottom.vue";
 
 export default {
-  components: {SortFromTopToBottom, SortFromBottomToTop, CustomTableRow},
+  components: {SvgSortToBottom, SvgSortToTop, CustomTableRow},
   computed: {
     ...mapState('entry', {
       shipments: state => state.shipments,
@@ -50,9 +50,7 @@ export default {
     ...mapMutations('entry', {
       setSort: 'setSort'
     }),
-    ...mapActions('entry', {
-      fetchShipments: 'fetchShipments',
-    }),
+    ...mapActions('entry', ['fetchShipments']),
     changeSort(sort) {
       if (this.sort === sort) {
         this.setSort('-' + sort)

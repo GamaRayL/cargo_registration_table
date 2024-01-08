@@ -30,9 +30,7 @@ export default {
     ...mapMutations('entry', {
       setPage: 'setPage',
     }),
-    ...mapActions('entry', {
-      fetchShipments: 'fetchShipments',
-    }),
+    ...mapActions('entry', ['fetchShipments']),
     changePage(currentPage) {
       if (currentPage !== this.page) {
         this.setPage(currentPage);

@@ -34,7 +34,7 @@
 import CustomInput from "@/components/UI/CustomInput.vue";
 import {mapActions} from "vuex";
 import CustomButton from "@/components/UI/CustomButton.vue";
-import SvgButtonDelete from "@/components/svg/SvgButtonDelete.vue";
+import SvgButtonDelete from "@/components/svg/SvgDelete.vue";
 // updateShipment
 export default {
   components: {SvgButtonDelete, CustomButton, CustomInput},

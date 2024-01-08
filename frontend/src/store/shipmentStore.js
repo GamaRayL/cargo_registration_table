@@ -2,7 +2,7 @@ import axios from "axios";
 import {API_URL, SORT_OPTIONS} from "@/constants";
 
 
-export const entryStore = {
+export const shipmentStore = {
     state: () => ({
         shipments: [],
         isShipmentsLoading: false,
@@ -61,9 +61,17 @@ export const entryStore = {
         // }
     },
     actions: {
+        async createShipment({dispatch}) {
+            try {
+                await axios.post(`${API_URL}/shipments/create/`);
+                dispatch('fetchShipments');
+            } catch (error) {
+                console.log('Ошибка создания строки отгрузки:', error)
+            }
+        },
         async deleteShipment({state, commit, dispatch}, {id}) {
             try {
-                await axios.delete(`${API_URL}/shipments/delete/${id}/`)
+                await axios.delete(`${API_URL}/shipments/delete/${id}/`);
                 dispatch('fetchShipments');
             } catch (error) {
                 console.error('Ошибка удаления строки отгрузки:', error);
