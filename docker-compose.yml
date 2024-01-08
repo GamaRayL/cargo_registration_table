@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend/
+    tty: true
+    command: bash -c ' python3 manage.py migrate && python3  && python3 manage.py runserver 0.0.0.0:8000'
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+
+  #  frontend:
+  #    build:
+  #      context: ./frontend
+  #    ports:
+  #      - "5173:5173"
+  #    command: npm run dev
+  #    volumes:
+  #      - ./frontend:/app
+  #    depends_on:
+  #      - backend
+
+  db:
+    image: postgres
+    env_file:
+      - ./backend/.env
+    volumes:
+      - pg_data:/var/lib/postgres/data/pg_data
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  pg_data:
