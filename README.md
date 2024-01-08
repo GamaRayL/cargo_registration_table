@@ -18,7 +18,8 @@ Django, а frontend использует Vue 3.
 
 - [Javascript](https://docs.celeryq.dev/en/stable/)
 - [Vue](https://vuejs.org/): javascript-фреймворк для создания пользовательских интерфейсов.
-- [Vuex PersistedState](https://www.npmjs.com/package/vuex-persistedstate)
+- [Vuex PersistedState](https://www.npmjs.com/package/vuex-persistedstate): плагин для сохранения состояния Vuex в
+  localStorage.
 - [Vuex](https://vuex.vuejs.org/): состояние управления для Vue.js приложений.
 - [Vite](https://vite-docs-ru.vercel.app/): сборщик (современная альтернатива webpack)  приложений на frontend`e.
 
