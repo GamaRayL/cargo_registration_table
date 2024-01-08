@@ -27,7 +27,7 @@ export const shipmentStore = {
         },
         sortOptionsWithoutLeft(state) {
             return state.sortOptions.filter(i => i.value !== 'left')
-        }
+        },
     },
     mutations: {
         setLoading(state, bool) {

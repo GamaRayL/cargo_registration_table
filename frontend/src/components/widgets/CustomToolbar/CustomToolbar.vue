@@ -50,13 +50,6 @@ export default {
       statementByColumn: 'statementByColumn',
       sortOptionsWithoutLeft: 'sortOptionsWithoutLeft'
     }),
-    // stbycol() {
-    //   if (this.localFilterProperty) {
-    //     const option = this.sortOptions.filter(i => i.value === this.localFilterProperty);
-    //     return option && option[0].statement.list;
-    //   }
-    //   return [];
-    // }
   },
   methods: {
     ...mapMutations('entry', ['setFilterStatement', 'setFilterValue', 'setFilterProperty']),
