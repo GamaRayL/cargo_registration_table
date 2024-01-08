@@ -1,8 +1,5 @@
 <template>
   <div class="toolbar">
-    <custom-button @click="createShipment">
-      <svg-add height="20" width="20"/>
-    </custom-button>
     <form class="form" @submit.prevent="fetchData">
       <custom-select
           name="property-select"
@@ -25,6 +22,9 @@
       <custom-button @submit.prevent="fetchData" type="submit">Получить</custom-button>
       <custom-button @click.prevent="resetData">Сброс</custom-button>
     </form>
+    <custom-button @click="createShipment">
+      <svg-add height="20" width="20"/>
+    </custom-button>
   </div>
 </template>
 
