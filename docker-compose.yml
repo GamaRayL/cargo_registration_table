@@ -5,7 +5,11 @@ services:
     build:
       context: ./backend/
     tty: true
-    command: bash -c ' python3 manage.py migrate && python3  && python3 manage.py runserver 0.0.0.0:8000'
+    command: bash -c '
+      python3 manage.py migrate
+      && python3 manage.py loaddata shipments/initial_data.json
+      && python3 manage.py runserver 0.0.0.0:8000
+      '
     ports:
       - "8000:8000"
     volumes:
@@ -15,17 +19,21 @@ services:
         condition: service_healthy
     env_file:
       - ./backend/.env
+    networks:
+      - mynetwork
 
-  #  frontend:
-  #    build:
-  #      context: ./frontend
-  #    ports:
-  #      - "5173:5173"
-  #    command: npm run dev
-  #    volumes:
-  #      - ./frontend:/app
-  #    depends_on:
-  #      - backend
+  frontend:
+    build:
+      context: ./frontend/
+    ports:
+      - "5173:5173"
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
 
   db:
     image: postgres

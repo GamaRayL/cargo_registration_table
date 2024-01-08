@@ -1,7 +1,10 @@
 # Таблица регистрации груза
 
-Приложение в формате `SPA`.
-В данный `Fullstack` проект построен на `Vue_3` и `DRF (Django)`.
+### Описание проекта
+
+Fullstack-приложение в формате SPA, построенное на Vue 3 и Django REST Framework (DRF). Представляет собой таблицу
+регистрации груза с возможностью добавления, удаления и обновления данных в реальном времени. Backend реализован на
+Django, а frontend использует Vue 3.
 
 ### Содержание
 
@@ -11,13 +14,22 @@
 
 ### Технологии
 
-- [Python](https://www.python.org/)
-- [Django](https://www.djangoproject.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [DRF](https://www.django-rest-framework.org/)
+#### Frontend
+
 - [Javascript](https://docs.celeryq.dev/en/stable/)
-- [Vue](https://vuejs.org/)
-- [Vuex](https://vuex.vuejs.org/)
+- [Vue](https://vuejs.org/): javascript-фреймворк для создания пользовательских интерфейсов.
+- [Vuex PersistedState](https://www.npmjs.com/package/vuex-persistedstate)
+- [Vuex](https://vuex.vuejs.org/): состояние управления для Vue.js приложений.
+- [Vite](https://vite-docs-ru.vercel.app/): сборщик (современная альтернатива webpack)  приложений на frontend`e.
+
+#### Backend
+
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com/): web-фреймворк для создания backend-части приложения.
+- [PostgreSQL](https://www.postgresql.org/): реляционная база данных для хранения данных.
+- [DRF](https://www.django-rest-framework.org/): расширение Django для создания API.
+
+p.s объединяет `Docker`
 
 ### Начало работы
 
@@ -87,7 +99,6 @@ vite
 * Присутствует возможность добавление, удаления и и обновления данных в таблицы в реальном времени. Эти данные
   передаются на `backend`. После чего `frontend` обрабатывает их у себя и показывает и кэширует в сессионке (настройки
   сохраняются после обновления страницы).
-
 * Таблица содержит фильтр и сортировку. Условия фильтра зависят от колонки по которой пользователь хочет произвести
   поиск. Сортировка включена в заголовки колонок, нажатия по которым будет её приводить в действие.
 * Также присутствует пагинация на стороне сервера. `Frontend` же выводит количество страниц.
