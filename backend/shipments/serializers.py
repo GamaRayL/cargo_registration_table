@@ -12,12 +12,14 @@ class ShipmentSerializer(ModelSerializer):
                   'document', 'vendor', 'declared', 'accepted',
                   'left', 'counted', 'driver']
 
-    @staticmethod   
+    @staticmethod
     def get_left(obj):
         declared = obj.declared
         accepted = obj.accepted
 
         if accepted and declared:
-            return declared - accepted
+            return None if declared - accepted == 0 else declared - accepted
         elif declared:
             return declared
+        elif accepted:
+            return -accepted
