@@ -1,0 +1,197 @@
+[
+  {
+    "model": "shipments.Shipment",
+    "pk": 1,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29650",
+      "document": "00000-11125",
+      "vendor": "Матрикс Технолоджи",
+      "declared": 55,
+      "accepted": 3,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 2,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29288",
+      "document": "00000-016190",
+      "vendor": "Марвел",
+      "declared": 4,
+      "accepted": 4,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 3,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29600",
+      "document": "0000-016200,0000-016180",
+      "vendor": "Ресурс Медиа",
+      "declared": 12,
+      "accepted": 12,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 4,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "27852",
+      "document": "0000-001005",
+      "vendor": "Катпром",
+      "declared": 20,
+      "accepted": 20,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 5,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "28845",
+      "document": "0000-016135",
+      "vendor": "Асбис",
+      "declared": 2,
+      "accepted": 2,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 6,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "28845",
+      "document": "0000-016135",
+      "vendor": "Асбис",
+      "declared": 2,
+      "accepted": 2,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 7,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29954",
+      "document": "0000-016801",
+      "vendor": "АсбиЭлкос",
+      "declared": 1,
+      "accepted": 1,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 8,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29954",
+      "document": "0000-016019",
+      "vendor": "Айкомп",
+      "declared": 33,
+      "accepted": 2,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 9,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29379",
+      "document": "0000-016019",
+      "vendor": "Азбука техники",
+      "declared": 26,
+      "accepted": 26,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 10,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29781",
+      "document": "0000-000026",
+      "vendor": "Аэро Трейд",
+      "declared": 3,
+      "accepted": 3,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 11,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29781",
+      "document": "0000-000026",
+      "vendor": "Midea Group",
+      "declared": 3,
+      "accepted": 3,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 12,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "22284",
+      "document": "",
+      "vendor": "Аувикс",
+      "declared": 59,
+      "accepted": 5,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  },
+  {
+    "model": "shipments.Shipment",
+    "pk": 13,
+    "fields": {
+      "date": "2024-01-05",
+      "time": "16:25:00",
+      "label": "29769",
+      "document": "0000-016166, 0000-016139 0000-000017 0000-016139",
+      "vendor": "Мерлион",
+      "declared": 22,
+      "accepted": 22,
+      "counted": "Гамид",
+      "driver": "Газель ТК"
+    }
+  }
+]
