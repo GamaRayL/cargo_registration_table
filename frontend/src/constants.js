@@ -1,14 +1,14 @@
-export const API_URL = 'http://0.0.0.0:8000/'
+export const API_URL = 'http://0.0.0.0:8000'
 
 export const STATEMENTS = [
     {
-        id: 1, list: [{id: 1, value: '', name: 'Равно'},
+        id: 1, list: [{id: 1, value: ' ', name: 'Равно'},
             {id: 2, value: '__ct', name: 'Содержит'},
             {id: 3, value: '__lt', name: 'Меньше'},
             {id: 4, value: '__gt', name: 'Больше'}]
     },
     {
-        id: 2, list: [{id: 1, value: '', name: 'Равно'},
+        id: 2, list: [{id: 1, value: ' ', name: 'Равно'},
             {id: 2, value: '__ct', name: 'Содержит'},]
     },
 ]

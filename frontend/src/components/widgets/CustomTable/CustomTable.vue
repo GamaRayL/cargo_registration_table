@@ -7,7 +7,7 @@
             class="table__header"
             v-for="item in sortOptions"
         >
-          <label
+          <div
               v-if="item.value !== 'left'"
               @click="changeSort(item.value)"
               style="cursor: pointer; padding: 4px 14px; width: 100%; display: block; margin: 0 2px"
@@ -15,8 +15,8 @@
             {{ item.name }}
             <svg-sort-to-bottom v-if="sort === item.value" width="18" height="18"/>
             <svg-sort-to-top v-else width="18" height="18"/>
-          </label>
-          <label v-else>{{ item.name }}</label>
+          </div>
+          <div v-else>{{ item.name }}</div>
         </th>
       </tr>
       <custom-table-row

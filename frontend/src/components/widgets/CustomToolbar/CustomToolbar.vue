@@ -17,7 +17,7 @@
       <custom-input
           name="value-select"
           v-model="localFilterValue"
-          v-if="localFilterStatement"
+          v-if="localFilterStatement !== ''"
       />
       <custom-button @submit.prevent="fetchData" type="submit">Получить</custom-button>
       <custom-button @click.prevent="resetData">Сброс</custom-button>
@@ -58,7 +58,9 @@ export default {
       this.setFilterProperty(this.localFilterProperty);
       this.setFilterStatement(this.localFilterStatement);
       this.setFilterValue(this.localFilterValue);
-      this.fetchShipments();
+      if (this.filterValue) {
+        this.filterValue && this.fetchShipments();
+      }
     },
     resetData() {
       this.setFilterProperty('');
@@ -78,7 +80,7 @@ export default {
   watch: {
     localFilterProperty() {
       this.setFilterProperty(this.localFilterProperty);
-    }
+    },
   }
 }
 </script>
