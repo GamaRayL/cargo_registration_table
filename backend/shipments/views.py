@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
-from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.filters import OrderingFilter
 from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
@@ -34,7 +34,7 @@ class ShipmentDeleteAPIView(DestroyAPIView):
 class ShipmentListAPIView(ListAPIView):
     serializer_class = ShipmentSerializer
     queryset = Shipment.objects.all().order_by('-id')
-    filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter, ]
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     filterset_class = ShipmentContainsFilter
     search_fields = ['date', 'time', 'label', 'document', 'vendor', 'declared', 'accepted', 'counted', 'driver']
     ordering_fields = ['date', 'time', 'label', 'document', 'vendor', 'declared', 'accepted', 'counted', 'driver']

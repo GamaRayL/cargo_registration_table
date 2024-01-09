@@ -1,10 +1,12 @@
+from datetime import datetime
+
 from django_filters import rest_framework as filters
 
 from shipments.models import Shipment
 
 
 class ShipmentContainsFilter(filters.FilterSet):
-    date = filters.CharFilter(field_name='date', lookup_expr='exact')
+    date = filters.CharFilter(method='filter_date')
     date__ct = filters.CharFilter(field_name='date', lookup_expr='icontains')
     date__lt = filters.DateFilter(field_name='date', lookup_expr='lt')
     date__gt = filters.DateFilter(field_name='date', lookup_expr='gt')
@@ -20,7 +22,7 @@ class ShipmentContainsFilter(filters.FilterSet):
     accepted__ct = filters.NumberFilter(field_name='accepted', lookup_expr='icontains')
     accepted__lt = filters.NumberFilter(field_name='accepted', lookup_expr='lt')
     accepted__gt = filters.NumberFilter(field_name='accepted', lookup_expr='gt')
-    
+
     vendor = filters.CharFilter(field_name='vendor', lookup_expr='exact')
     vendor__ct = filters.CharFilter(field_name='vendor', lookup_expr='icontains')
     label = filters.CharFilter(field_name='label', lookup_expr='exact')
@@ -31,6 +33,24 @@ class ShipmentContainsFilter(filters.FilterSet):
     counted__ct = filters.CharFilter(field_name='counted', lookup_expr='icontains')
     driver = filters.CharFilter(field_name='driver', lookup_expr='exact')
     driver__ct = filters.CharFilter(field_name='driver', lookup_expr='icontains')
+
+    @staticmethod
+    def convert_date_format(value):
+        try:
+            # Парсим входную дату в формате "%d.%m.%Y" в объект datetime
+            date_object = datetime.strptime(value, "%d.%m.%Y").date()
+            # Преобразовываем обратно в строку в формате базы данных "%Y-%m-%d"
+            return date_object.strftime("%Y-%m-%d")
+        except ValueError:
+            return None
+
+    def filter_date(self, queryset, name, value):
+        # Применяем преобразование формата, если значение не None
+        formatted_value = self.convert_date_format(value)
+        if formatted_value:
+            # Применяем фильтр
+            return queryset.filter(**{name: formatted_value})
+        return queryset
 
     class Meta:
         model = Shipment
