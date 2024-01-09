@@ -30,7 +30,12 @@ Django, а frontend использует Vue 3.
 - [PostgreSQL](https://www.postgresql.org/): реляционная база данных для хранения данных.
 - [DRF](https://www.django-rest-framework.org/): расширение Django для создания API.
 
-p.s объединяет `Docker`
+#### Дополнительно
+
+- [Docker](https://www.docker.com/): приложение для контениризации.
+- [Unittest](https://docs.python.org/3/library/unittest.html): модуль тестирования (в данном случае используется
+  специальный
+  пакет rest_framework.test).
 
 ### Начало работы
 
