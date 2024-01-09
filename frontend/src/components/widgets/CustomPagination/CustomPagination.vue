@@ -20,17 +20,17 @@ import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   computed: {
-    ...mapState('entry', {
-      isShipmentsLoading: state => state.isShipmentsLoading,
-      totalPages: state => state.totalPages,
-      page: state => state.page,
+    ...mapState('shipment', {
+      isShipmentsLoading: 'isShipmentsLoading',
+      totalPages: 'totalPages',
+      page: 'page',
     })
   },
   methods: {
-    ...mapMutations('entry', {
+    ...mapMutations('shipment', {
       setPage: 'setPage',
     }),
-    ...mapActions('entry', ['fetchShipments']),
+    ...mapActions('shipment', ['fetchShipments']),
     changePage(currentPage) {
       if (currentPage !== this.page) {
         this.setPage(currentPage);

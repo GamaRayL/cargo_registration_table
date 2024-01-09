@@ -5,7 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
     modules: {
-        entry: shipmentStore
+        shipment: shipmentStore
     },
     plugins: [
         createPersistedState({

@@ -1,10 +1,10 @@
 <template>
-  <tr
+  <div
       class="row"
       @mouseover="isShow = !isShow"
       @mouseout="isShow = !isShow"
   >
-    <td
+    <div
         class="row__data"
         :key="key" v-for="[key, value] of filteredEntries"
     >
@@ -17,7 +17,7 @@
           :type="getTypeForInput(key)"
           :disabled="key === 'left'"
       >
-    </td>
+    </div>
     <custom-button
         :class="[
             'button_delete-row',
@@ -27,7 +27,7 @@
     >
       <svg-button-delete width="16" height="16"/>
     </custom-button>
-  </tr>
+  </div>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('entry', ["updateShipment", "deleteShipment"]),
+    ...mapActions('shipment', ["updateShipment", "deleteShipment"]),
     updateInput(key, newValue) {
       const data = {
         [key]: newValue
@@ -103,6 +103,8 @@ export default {
 
 .button {
   &_delete-row {
+    position: absolute;
+    right: -16px;
     transition: ease-in-out .1s;
     background: none;
     border: none;

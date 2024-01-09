@@ -1,24 +1,23 @@
 <template>
   <div class="wrapper">
-    <button @click="changeSort()">Сброс сортировки</button>
-    <table class="table">
-      <tr class="table__row-title">
-        <th
+    <div class="table">
+      <div class="table__row-title">
+        <div
             class="table__header"
             v-for="item in sortOptions"
         >
           <div
               v-if="item.value !== 'left'"
-              @click="changeSort(item.value)"
-              style="cursor: pointer; padding: 4px 14px; width: 100%; display: block; margin: 0 2px"
+              @click="changeSort({sort: item.value})"
+              style="cursor: pointer; gap: 4px; justify-content: center; padding: 4px 14px; width: 100%; display: flex; margin: 0 2px; align-items: center"
           >
-            {{ item.name }}
+            <span>{{ item.name }}</span>
             <svg-sort-to-bottom v-if="sort === item.value" width="18" height="18"/>
             <svg-sort-to-top v-else width="18" height="18"/>
           </div>
           <div v-else>{{ item.name }}</div>
-        </th>
-      </tr>
+        </div>
+      </div>
       <transition-group name="fade-table">
         <custom-table-row
             class="table__row"
@@ -27,42 +26,33 @@
             :key="item.id"
             v-if="shipments.length > 0"
         />
-        <tr v-else>
-          <td style="padding: 4px 12px;" v-for="i in 10">---------------------------------------</td>
-        </tr>
       </transition-group>
-    </table>
+    </div>
   </div>
 </template>
 
 <script>
 
-import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow/index.js";
+import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow";
 import {mapActions, mapMutations, mapState} from "vuex";
-import SvgSortToTop from "@/components/svg/SvgSortToTop.vue";
-import SvgSortToBottom from "@/components/svg/SvgSortToBottom.vue";
+import SvgSortToTop from "@/components/svg/SvgSortToTop";
+import SvgSortToBottom from "@/components/svg/SvgSortToBottom";
 
 export default {
   components: {SvgSortToBottom, SvgSortToTop, CustomTableRow},
   computed: {
-    ...mapState('entry', {
-      shipments: state => state.shipments,
-      sortOptions: state => state.sortOptions,
-      sort: state => state.sort
+    ...mapState('shipment', {
+      shipments: 'shipments', sortOptions: 'sortOptions', sort: 'sort'
     })
   },
   methods: {
-    ...mapMutations('entry', {
+    ...mapMutations('shipment', {
       setSort: 'setSort'
     }),
-    ...mapActions('entry', ['fetchShipments']),
-    changeSort(sort) {
-      if (this.sort === sort) {
-        this.setSort('-' + sort)
-      } else {
-        this.setSort(sort)
-      }
-    }
+    ...mapActions('shipment', {
+      fetchShipments: 'fetchShipments',
+      changeSort: 'changeSort'
+    }),
   },
   watch: {
     sort() {
@@ -73,14 +63,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/mixins";
+
 .wrapper {
   min-height: 300px;
+  position: relative;
 }
 
 .table {
-  border-collapse: collapse;
+  width: 100%;
 
   &__header {
+    @include flex-center;
     user-select: none;
 
     border: 1px solid var(--c-gray);
@@ -90,10 +84,14 @@ export default {
   }
 
   &__row {
-    transition: all .6s;
+    @include grid-10;
+
+    transition: all .4s;
   }
 
   &__row-title {
+    @include grid-10;
+
     background: var(--c-orange);
     font-size: var(--f-size-30);
   }

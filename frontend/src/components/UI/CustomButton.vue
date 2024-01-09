@@ -21,8 +21,8 @@ export default {
 <style lang="scss" scoped>
 .button {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-self: center;
   cursor: pointer;
 }
 </style>

@@ -21,6 +21,7 @@
             class="form__input"
             name="value-select"
             v-model="localFilterValue"
+            v-focus
             v-if="localFilterStatement !== ''"
         />
       </transition>
@@ -29,7 +30,7 @@
       >
         <transition name="fade-toolbar">
           <custom-button
-              class="form__button"
+              class="toolbar__button"
               @submit.prevent="fetchData"
               type="submit"
               v-if="localFilterStatement !== ''"
@@ -39,7 +40,7 @@
         </transition>
         <transition name="fade-toolbar">
           <custom-button
-              class="form__button"
+              class="toolbar__button"
               @click.prevent="resetData"
               v-if="localFilterProperty && statementByColumn.length > 0"
           >
@@ -48,9 +49,14 @@
         </transition>
       </div>
     </form>
-    <custom-button @click="createShipment">
-      <svg-add height="20" width="20"/>
-    </custom-button>
+    <div style="display: flex; gap: 4px; justify-content: flex-end;">
+      <custom-button class="toolbar__button" @click="this.createShipment">
+        <span class="button__text">Добавить строку</span>
+      </custom-button>
+      <button class="toolbar__button" @click="changeSort()">
+        <span class="button__text">Сброс сортировки</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -72,15 +78,15 @@ export default {
     };
   },
   computed: {
-    ...mapState('entry', ['sortOptions', 'filterStatement', 'filterValue', 'filterProperty']),
-    ...mapGetters('entry', {
+    ...mapState('shipment', ['sortOptions', 'filterStatement', 'filterValue', 'filterProperty']),
+    ...mapGetters('shipment', {
       statementByColumn: 'statementByColumn',
       sortOptionsWithoutLeft: 'sortOptionsWithoutLeft'
     }),
   },
   methods: {
-    ...mapMutations('entry', ['setFilterStatement', 'setFilterValue', 'setFilterProperty']),
-    ...mapActions('entry', ['fetchShipments', 'createShipment']),
+    ...mapMutations('shipment', ['setFilterStatement', 'setFilterValue', 'setFilterProperty', 'setSort']),
+    ...mapActions('shipment', ['fetchShipments', 'createShipment']),
     fetchData() {
       this.setFilterProperty(this.localFilterProperty);
       this.setFilterStatement(this.localFilterStatement);
@@ -97,6 +103,13 @@ export default {
       this.localFilterStatement = '';
       this.localFilterValue = '';
       this.fetchShipments();
+    },
+    changeSort(sort) {
+      if (this.sort === sort) {
+        this.setSort('-' + sort)
+      } else {
+        this.setSort(sort)
+      }
     }
   },
   mounted() {
@@ -114,16 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 .toolbar {
-  margin-bottom: 10px;
-}
-
-.button__text {
-  transition: ease-in-out .1s;
-}
-
-.form {
-  display: flex;
-  gap: 4px;
+  margin-bottom: 4px;
 
   &__button {
     background: #363636;
@@ -140,6 +144,16 @@ export default {
       transform: scale(0.8);
     }
   }
+}
+
+.button__text {
+  transition: ease-in-out .1s;
+}
+
+.form {
+  display: flex;
+  margin-bottom: 4px;
+  gap: 4px;
 
   &__input {
     box-shadow: var(--bS-standart);

@@ -111,6 +111,14 @@ export const shipmentStore = {
                 commit('setLoading', false)
             }
         },
+        changeSort({state, commit}, {sort}) {
+            console.log(sort)
+            if (state.sort === sort) {
+                commit('setSort', '-' + sort)
+            } else {
+                commit('setSort', sort)
+            }
+        }
     },
     namespaced: true
 }
