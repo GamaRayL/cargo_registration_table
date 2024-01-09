@@ -18,7 +18,7 @@ class ShipmentTestCase(APITestCase):
         )
 
     def test_create_shipment(self):
-        """ Тестирование создания отгрузки """
+        """Тестирование создания отгрузки."""
         data = {
             "date": "2024-01-05",
             "time": "16:25:00",
@@ -35,7 +35,7 @@ class ShipmentTestCase(APITestCase):
         self.assertTrue(Shipment.objects.all().exists())
 
     def test_list_shipment(self):
-        """ Тестирование получения списка отгрузок """
+        """Тестирование получения списка отгрузок."""
 
         response = self.client.get('/shipments/')
 
@@ -57,7 +57,7 @@ class ShipmentTestCase(APITestCase):
         )
 
     def test_update_shipment(self):
-        """ Тестирование обновления урока """
+        """Тестирование обновления урока."""
 
         data = {
             "date": "2023-01-05",
@@ -86,7 +86,7 @@ class ShipmentTestCase(APITestCase):
         )
 
     def test_shipment_detele(self):
-        """ Тестирование удаления отгрузки """
+        """Тестирование удаления отгрузки."""
         response = self.client.delete(f'/shipments/delete/{self.shipment.id}/')
 
         self.assertEqual(

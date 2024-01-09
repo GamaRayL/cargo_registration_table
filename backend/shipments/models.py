@@ -13,3 +13,6 @@ class Shipment(models.Model):
     accepted = models.IntegerField(**NULLABLE, verbose_name='принято')
     counted = models.CharField(**NULLABLE, max_length=150, verbose_name='считал')
     driver = models.CharField(**NULLABLE, max_length=50, verbose_name='водитель')
+
+    def __str__(self):
+        return f'Прием товара: дата {self.date}, поставщик {self.vendor}'

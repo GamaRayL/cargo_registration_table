@@ -14,6 +14,7 @@ class ShipmentSerializer(ModelSerializer):
 
     @staticmethod
     def get_left(obj):
+        """Новое поле, которое получается из двух полей declared и accepted"""
         declared = obj.declared
         accepted = obj.accepted
 
