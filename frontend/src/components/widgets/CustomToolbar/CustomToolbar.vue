@@ -12,15 +12,33 @@
           label="Выберите условие"
           v-model="localFilterStatement"
           :options="statementByColumn"
-          v-if="localFilterProperty && statementByColumn.length > 0"
+          v-show="localFilterProperty && statementByColumn.length > 0"
       />
       <custom-input
+          class="form__input"
           name="value-select"
           v-model="localFilterValue"
           v-if="localFilterStatement !== ''"
       />
-      <custom-button @submit.prevent="fetchData" type="submit">Получить</custom-button>
-      <custom-button @click.prevent="resetData">Сброс</custom-button>
+      <div
+          style="display: flex; gap: 4px;"
+      >
+        <custom-button
+            class="form__button"
+            @submit.prevent="fetchData"
+            type="submit"
+            v-if="localFilterStatement !== ''"
+        >
+          <span class="button__text">Получить</span>
+        </custom-button>
+        <custom-button
+            class="form__button"
+            @click.prevent="resetData"
+            v-if="localFilterProperty && statementByColumn.length > 0"
+        >
+          <span class="button__text">Сбросить</span>
+        </custom-button>
+      </div>
     </form>
     <custom-button @click="createShipment">
       <svg-add height="20" width="20"/>
@@ -29,11 +47,12 @@
 </template>
 
 <script>
-import CustomSelect from "@/components/UI/CustomSelect";
+
+import SvgAdd from "@/components/svg/SvgAdd";
 import CustomInput from "@/components/UI/CustomInput";
+import CustomSelect from "@/components/UI/CustomSelect";
 import CustomButton from "@/components/UI/CustomButton";
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
-import SvgAdd from "@/components/svg/SvgAdd.vue";
 
 export default {
   components: {SvgAdd, CustomButton, CustomInput, CustomSelect},
@@ -90,8 +109,32 @@ export default {
   margin-bottom: 10px;
 }
 
+.button__text {
+  transition: ease-in-out .1s;
+}
+
 .form {
   display: flex;
   gap: 4px;
+
+  &__button {
+    background: #363636;
+    color: var(--c-orange);
+    font-weight: var(--f-weight-bold);
+    font-size: var(--f-size-22);
+    font-family: var(--f-familySecond);
+    border: none;
+    border-radius: var(--br-standart);
+    padding: 0 4px;
+    box-shadow: var(--bS-standart);
+
+    &:active .button__text {
+      transform: scale(0.8);
+    }
+  }
+
+  &__input {
+    box-shadow: var(--bS-standart);
+  }
 }
 </style>

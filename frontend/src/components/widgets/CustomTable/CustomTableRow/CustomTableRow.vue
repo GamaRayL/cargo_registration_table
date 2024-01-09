@@ -33,10 +33,10 @@
 <script>
 
 
-import CustomInput from "@/components/UI/CustomInput.vue";
+import CustomInput from "@/components/UI/CustomInput";
 import {mapActions} from "vuex";
-import CustomButton from "@/components/UI/CustomButton.vue";
-import SvgButtonDelete from "@/components/svg/SvgDelete.vue";
+import CustomButton from "@/components/UI/CustomButton";
+import SvgButtonDelete from "@/components/svg/SvgDelete";
 
 export default {
   components: {SvgButtonDelete, CustomButton, CustomInput},
@@ -104,6 +104,8 @@ export default {
 .button {
   &_delete-row {
     transition: ease-in-out .1s;
+    background: none;
+    border: none;
   }
 
 

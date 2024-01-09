@@ -3,15 +3,21 @@
 
 :root {
   // Decoration
-  --с-orange: #ffd966;
+  --c-orange: #ffd966;
   --c-gray: rgba(140, 140, 140, 0.38);
 
+  --bS-standart: 0 0 12px 0 var(--c-gray);
+
+  --br-standart: 4px;
+  --p-standart: 2px 6px;
+
   // Typographic
-  --f-familyTitle: 'Amatic SC', sans-serif;
+  --f-familySecond: 'Amatic SC', sans-serif;
   --f-familyMain: 'Roboto', sans-serif;
 
   --f-weight-regular: 400;
   --f-weight-medium: 500;
+  --f-weight-bold: 600;
 
   --f-size-10: 10px;
   --f-size-12: 12px;

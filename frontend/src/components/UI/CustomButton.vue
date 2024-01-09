@@ -24,8 +24,5 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 4px;
-  border: none;
-  background: inherit;
 }
 </style>

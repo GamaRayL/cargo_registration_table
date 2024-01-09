@@ -1,6 +1,7 @@
 <template>
   <input
       name=""
+      class="input"
       @change="changeInptut"
       :value="modelValue"
       :placeholder="placeholder"
@@ -32,5 +33,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.input {
+  padding: var(--p-standart);
+  border: 1px solid var(--c-gray);
+  border-radius: var(--br-standart);
+}
 </style>

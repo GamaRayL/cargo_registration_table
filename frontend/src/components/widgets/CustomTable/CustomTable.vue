@@ -2,7 +2,7 @@
   <div class="wrapper">
     <button @click="changeSort()">Сброс сортировки</button>
     <table class="table">
-      <tr class="table__rowTitle">
+      <tr class="table__row-title">
         <th
             class="table__header"
             v-for="item in sortOptions"
@@ -23,9 +23,11 @@
           v-for="item in shipments"
           :item="item"
           :key="item.id"
-      >
-        1
-      </custom-table-row>
+          v-if="shipments.length > 0"
+      />
+      <tr v-else>
+        <td style="padding: 4px 12px;" v-for="i in 10">---------------------------------------</td>
+      </tr>
     </table>
   </div>
 </template>
@@ -80,12 +82,12 @@ export default {
 
     border: 1px solid var(--c-gray);
 
-    font-family: var(--f-familyTitle);
+    font-family: var(--f-familySecond);
     font-weight: var(--f-weight-regular);
   }
 
-  &__rowTitle {
-    background-color: var(--с-orange);
+  &__row-title {
+    background: var(--c-orange);
     font-size: var(--f-size-30);
   }
 }
