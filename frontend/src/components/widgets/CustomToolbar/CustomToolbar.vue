@@ -7,37 +7,45 @@
           v-model="localFilterProperty"
           :options="sortOptionsWithoutLeft"
       />
-      <custom-select
-          name="statement-select"
-          label="Выберите условие"
-          v-model="localFilterStatement"
-          :options="statementByColumn"
-          v-show="localFilterProperty && statementByColumn.length > 0"
-      />
-      <custom-input
-          class="form__input"
-          name="value-select"
-          v-model="localFilterValue"
-          v-if="localFilterStatement !== ''"
-      />
+      <transition name="fade-toolbar">
+        <custom-select
+            name="statement-select"
+            label="Выберите условие"
+            v-model="localFilterStatement"
+            :options="statementByColumn"
+            v-if="localFilterProperty !== ''"
+        />
+      </transition>
+      <transition name="fade-toolbar">
+        <custom-input
+            class="form__input"
+            name="value-select"
+            v-model="localFilterValue"
+            v-if="localFilterStatement !== ''"
+        />
+      </transition>
       <div
           style="display: flex; gap: 4px;"
       >
-        <custom-button
-            class="form__button"
-            @submit.prevent="fetchData"
-            type="submit"
-            v-if="localFilterStatement !== ''"
-        >
-          <span class="button__text">Получить</span>
-        </custom-button>
-        <custom-button
-            class="form__button"
-            @click.prevent="resetData"
-            v-if="localFilterProperty && statementByColumn.length > 0"
-        >
-          <span class="button__text">Сбросить</span>
-        </custom-button>
+        <transition name="fade-toolbar">
+          <custom-button
+              class="form__button"
+              @submit.prevent="fetchData"
+              type="submit"
+              v-if="localFilterStatement !== ''"
+          >
+            <span class="button__text">Получить</span>
+          </custom-button>
+        </transition>
+        <transition name="fade-toolbar">
+          <custom-button
+              class="form__button"
+              @click.prevent="resetData"
+              v-if="localFilterProperty && statementByColumn.length > 0"
+          >
+            <span class="button__text">Сбросить</span>
+          </custom-button>
+        </transition>
       </div>
     </form>
     <custom-button @click="createShipment">
@@ -136,5 +144,19 @@ export default {
   &__input {
     box-shadow: var(--bS-standart);
   }
+}
+
+.fade-toolbar-enter-active {
+  transition: all .4s ease;
+}
+
+.fade-toolbar-leave-active {
+  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fade-toolbar-enter-from,
+.fade-toolbar-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
 }
 </style>

@@ -19,15 +19,18 @@
           <div v-else>{{ item.name }}</div>
         </th>
       </tr>
-      <custom-table-row
-          v-for="item in shipments"
-          :item="item"
-          :key="item.id"
-          v-if="shipments.length > 0"
-      />
-      <tr v-else>
-        <td style="padding: 4px 12px;" v-for="i in 10">---------------------------------------</td>
-      </tr>
+      <transition-group name="fade-table">
+        <custom-table-row
+            class="table__row"
+            v-for="item in shipments"
+            :item="item"
+            :key="item.id"
+            v-if="shipments.length > 0"
+        />
+        <tr v-else>
+          <td style="padding: 4px 12px;" v-for="i in 10">---------------------------------------</td>
+        </tr>
+      </transition-group>
     </table>
   </div>
 </template>
@@ -86,9 +89,22 @@ export default {
     font-weight: var(--f-weight-regular);
   }
 
+  &__row {
+    transition: all .6s;
+  }
+
   &__row-title {
     background: var(--c-orange);
     font-size: var(--f-size-30);
   }
+}
+
+.fade-table-enter, .fade-table-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.fade-table-leave-active {
+  position: absolute;
 }
 </style>

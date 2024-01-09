@@ -1,15 +1,15 @@
 <template>
   <tr
-      class="table__row"
+      class="row"
       @mouseover="isShow = !isShow"
       @mouseout="isShow = !isShow"
   >
     <td
-        class="table__data"
+        class="row__data"
         :key="key" v-for="[key, value] of filteredEntries"
     >
       <input
-          class="table__input"
+          class="row__input"
           :value="value"
           ref="inputRef"
           @input="updateInput(key, $event.target.value)"
@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table {
+.row {
   &__data {
     border: 1px solid var(--c-gray);
   }
