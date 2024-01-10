@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <form class="form" @submit.prevent="fetchData">
+    <form class="form" @submit.prevent="handleGetData">
       <custom-select
           name="property-select"
           label="Выберите колонку"
@@ -11,52 +11,42 @@
         <custom-select
             name="statement-select"
             label="Выберите условие"
-            v-model="localFilterStatement"
             :options="statementByColumn"
+            v-model="localFilterStatement"
             v-if="localFilterProperty !== ''"
         />
       </transition>
       <transition name="fade-toolbar">
         <custom-input
-            class="form__input"
-            name="value-select"
-            v-model="localFilterValue"
             v-focus
+            name="value-select"
+            class="form__input"
+            v-model="localFilterValue"
             v-if="localFilterStatement !== ''"
         />
       </transition>
-      <div
-          style="display: flex; gap: 4px;"
-      >
+      <div class="buttons-group">
         <transition name="fade-toolbar">
           <custom-button
-              class="toolbar__button"
-              @submit.prevent="fetchData"
+              contained
               type="submit"
+              @submit.prevent="handleGetData"
               v-if="localFilterStatement !== ''"
           >
-            <span class="button__text">Получить</span>
+            Получить
           </custom-button>
         </transition>
         <transition name="fade-toolbar">
           <custom-button
-              class="toolbar__button"
-              @click.prevent="resetData"
+              contained
+              @click.prevent="handleResetData"
               v-if="localFilterProperty && statementByColumn.length > 0"
           >
-            <span class="button__text">Сбросить</span>
+            Сбросить
           </custom-button>
         </transition>
       </div>
     </form>
-    <div style="display: flex; gap: 4px; justify-content: flex-end;">
-      <custom-button class="toolbar__button" @click="this.createShipment">
-        <span class="button__text">Добавить строку</span>
-      </custom-button>
-      <button class="toolbar__button" @click="changeSort()">
-        <span class="button__text">Сброс сортировки</span>
-      </button>
-    </div>
   </div>
 </template>
 
@@ -87,7 +77,7 @@ export default {
   methods: {
     ...mapMutations('shipment', ['setFilterStatement', 'setFilterValue', 'setFilterProperty', 'setSort']),
     ...mapActions('shipment', ['fetchShipments', 'createShipment']),
-    fetchData() {
+    handleGetData() {
       this.setFilterProperty(this.localFilterProperty);
       this.setFilterStatement(this.localFilterStatement);
       this.setFilterValue(this.localFilterValue);
@@ -95,7 +85,7 @@ export default {
         this.filterValue && this.fetchShipments();
       }
     },
-    resetData() {
+    handleResetData() {
       this.setFilterProperty('');
       this.setFilterStatement('');
       this.setFilterValue('');
@@ -104,13 +94,6 @@ export default {
       this.localFilterValue = '';
       this.fetchShipments();
     },
-    changeSort(sort) {
-      if (this.sort === sort) {
-        this.setSort('-' + sort)
-      } else {
-        this.setSort(sort)
-      }
-    }
   },
   mounted() {
     this.localFilterProperty = this.filterProperty;
@@ -126,28 +109,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/mixins";
+
 .toolbar {
   margin-bottom: 4px;
-
-  &__button {
-    background: #363636;
-    color: var(--c-orange);
-    font-weight: var(--f-weight-bold);
-    font-size: var(--f-size-22);
-    font-family: var(--f-familySecond);
-    border: none;
-    border-radius: var(--br-standart);
-    padding: 0 4px;
-    box-shadow: var(--bS-standart);
-
-    &:active .button__text {
-      transform: scale(0.8);
-    }
-  }
 }
 
-.button__text {
-  transition: ease-in-out .1s;
+.buttons-group {
+  display: flex;
+  gap: 4px;
 }
 
 .form {

@@ -112,12 +112,14 @@ export const shipmentStore = {
             }
         },
         changeSort({state, commit}, {sort}) {
-            console.log(sort)
             if (state.sort === sort) {
                 commit('setSort', '-' + sort)
             } else {
                 commit('setSort', sort)
             }
+        },
+        resetSort({commit}) {
+            commit('setSort', '')
         }
     },
     namespaced: true

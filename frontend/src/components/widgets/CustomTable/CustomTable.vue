@@ -1,5 +1,13 @@
 <template>
   <div class="wrapper">
+    <div class="buttons-group">
+      <custom-button contained @click="handleCreateShipment">
+        Добавить строку
+      </custom-button>
+      <custom-button contained @click="handleResetSort">
+        Сброс сортировки
+      </custom-button>
+    </div>
     <div class="table">
       <div class="table__row-title">
         <div
@@ -8,7 +16,7 @@
         >
           <div
               v-if="item.value !== 'left'"
-              @click="changeSort({sort: item.value})"
+              @click="handleChangeSort(item.value)"
               style="cursor: pointer; gap: 4px; justify-content: center; padding: 4px 14px; width: 100%; display: flex; margin: 0 2px; align-items: center"
           >
             <span>{{ item.name }}</span>
@@ -33,13 +41,14 @@
 
 <script>
 
-import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow";
 import {mapActions, mapMutations, mapState} from "vuex";
 import SvgSortToTop from "@/components/svg/SvgSortToTop";
 import SvgSortToBottom from "@/components/svg/SvgSortToBottom";
+import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow";
+import CustomButton from "@/components/UI/CustomButton.vue";
 
 export default {
-  components: {SvgSortToBottom, SvgSortToTop, CustomTableRow},
+  components: {CustomButton, SvgSortToBottom, SvgSortToTop, CustomTableRow},
   computed: {
     ...mapState('shipment', {
       shipments: 'shipments', sortOptions: 'sortOptions', sort: 'sort'
@@ -49,10 +58,16 @@ export default {
     ...mapMutations('shipment', {
       setSort: 'setSort'
     }),
-    ...mapActions('shipment', {
-      fetchShipments: 'fetchShipments',
-      changeSort: 'changeSort'
-    }),
+    ...mapActions('shipment', ['fetchShipments', 'resetSort', 'changeSort', 'createShipment']),
+    handleChangeSort(sort) {
+      this.changeSort({sort: sort})
+    },
+    handleResetSort() {
+      this.resetSort()
+    },
+    handleCreateShipment() {
+      this.createShipment()
+    }
   },
   watch: {
     sort() {

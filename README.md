@@ -37,7 +37,7 @@ Django, а frontend использует Vue 3.
   специальный
   пакет rest_framework.test).
 
-### Начало работы
+### Начало работыя
 
 #### Backend
 
