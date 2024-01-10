@@ -17,23 +17,27 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - ./backend/.env
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
     networks:
       - mynetwork
 
-    frontend:
-      build:
-        context: ./frontend/
-      ports:
-        - "5173:5173"
-      command: bash -c 'sleep 5 && npm run dev'
-      volumes:
-        - ./frontend:/app
-      depends_on:
-        - backend
-      networks:
-        - mynetwork
+  frontend:
+    build:
+      context: ./frontend/
+    ports:
+      - "5173:5173"
+    command: bash -c 'sleep 5 && npm run dev'
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
 
   db:
     image: postgres
