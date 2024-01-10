@@ -42,10 +42,10 @@
 <script>
 
 import {mapActions, mapMutations, mapState} from "vuex";
+import CustomButton from "@/components/UI/CustomButton";
 import SvgSortToTop from "@/components/svg/SvgSortToTop";
 import SvgSortToBottom from "@/components/svg/SvgSortToBottom";
 import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow";
-import CustomButton from "@/components/UI/CustomButton.vue";
 
 export default {
   components: {CustomButton, SvgSortToBottom, SvgSortToTop, CustomTableRow},
@@ -100,6 +100,8 @@ export default {
 
   &__row {
     @include grid-10;
+    
+    width: 100%;
 
     transition: all .4s;
   }
@@ -110,6 +112,11 @@ export default {
     background: var(--c-orange);
     font-size: var(--f-size-30);
   }
+}
+
+.buttons-group {
+  @include buttons-group;
+  justify-content: flex-end;
 }
 
 .fade-table-enter, .fade-table-leave-to {
