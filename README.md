@@ -48,7 +48,7 @@ Django, а frontend использует Vue 3.
 После клонирования проекта запустите его в терминале с помощью команды:
 
 ```sh
-$ docker-compose up
+$ docker-compose up --build
 ```
 
 ---
