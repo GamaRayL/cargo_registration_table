@@ -41,11 +41,11 @@
 
 <script>
 
-import {mapActions, mapMutations, mapState} from "vuex";
-import CustomButton from "@/components/UI/CustomButton";
-import SvgSortToTop from "@/components/svg/SvgSortToTop";
-import SvgSortToBottom from "@/components/svg/SvgSortToBottom";
-import {CustomTableRow} from "@/components/widgets/CustomTable/CustomTableRow";
+import {mapActions, mapMutations, mapState} from 'vuex';
+import CustomButton from '@/components/UI/CustomButton';
+import SvgSortToTop from '@/components/svg/SvgSortToTop';
+import SvgSortToBottom from '@/components/svg/SvgSortToBottom';
+import {CustomTableRow} from '@/components/widgets/CustomTable/CustomTableRow';
 
 export default {
   components: {CustomButton, SvgSortToBottom, SvgSortToTop, CustomTableRow},
@@ -60,13 +60,13 @@ export default {
     }),
     ...mapActions('shipment', ['fetchShipments', 'resetSort', 'changeSort', 'createShipment']),
     handleChangeSort(sort) {
-      this.changeSort({sort: sort})
+      this.changeSort({sort: sort});
     },
     handleResetSort() {
-      this.resetSort()
+      this.resetSort();
     },
     handleCreateShipment() {
-      this.createShipment()
+      this.createShipment();
     }
   },
   watch: {
@@ -74,7 +74,7 @@ export default {
       this.fetchShipments();
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +100,7 @@ export default {
 
   &__row {
     @include grid-10;
-    
+
     width: 100%;
 
     transition: all .4s;
@@ -117,6 +117,7 @@ export default {
 .buttons-group {
   @include buttons-group;
   justify-content: flex-end;
+  margin-bottom: 4px;
 }
 
 .fade-table-enter, .fade-table-leave-to {

@@ -33,17 +33,17 @@
 <script>
 
 
-import CustomInput from "@/components/UI/CustomInput";
-import {mapActions} from "vuex";
-import CustomButton from "@/components/UI/CustomButton";
-import SvgButtonDelete from "@/components/svg/SvgDelete";
+import {mapActions} from 'vuex';
+import CustomInput from '@/components/UI/CustomInput';
+import CustomButton from '@/components/UI/CustomButton';
+import SvgButtonDelete from '@/components/svg/SvgDelete';
 
 export default {
   components: {SvgButtonDelete, CustomButton, CustomInput},
   data() {
     return {
       isShow: false,
-    }
+    };
   },
   props: {
     item: {
@@ -52,17 +52,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions('shipment', ["updateShipment", "deleteShipment"]),
+    ...mapActions('shipment', ['updateShipment', 'deleteShipment']),
     updateInput(key, newValue) {
       const data = {
         [key]: newValue
-      }
+      };
       this.updateShipment({id: this.item.id, data});
 
-      console.log(Object.keys(this.item).map(i => i))
+      console.log(Object.keys(this.item).map(i => i));
     },
     handleDeleteClick(id) {
-      this.deleteShipment({id: id})
+      this.deleteShipment({id: id});
     },
     getTypeForInput(key) {
       if (key === 'date') {
@@ -74,7 +74,7 @@ export default {
       } else if (['declared', 'accepted'].includes(key)) {
         return 'number';
       } else {
-        return 'text'
+        return 'text';
       }
     },
   },
@@ -83,7 +83,7 @@ export default {
       return Object.entries(this.item).filter(([key]) => key !== 'id');
     },
   }
-}
+};
 
 </script>
 

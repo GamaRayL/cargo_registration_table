@@ -1,5 +1,5 @@
 <template>
-  <div style="display: grid;">
+  <div class="page-main">
     <custom-toolbar></custom-toolbar>
     <custom-table></custom-table>
     <custom-pagination></custom-pagination>
@@ -8,14 +8,17 @@
 
 <script>
 
-import CustomPagination from "@/components/widgets/CustomPagination";
-import CustomToolbar from "@/components/widgets/CustomToolbar";
-import CustomTable from "@/components/widgets/CustomTable";
+import CustomTable from '@/components/widgets/CustomTable';
+import CustomToolbar from '@/components/widgets/CustomToolbar';
+import CustomPagination from '@/components/widgets/CustomPagination';
 
 export default {
   components: {CustomToolbar, CustomPagination, CustomTable},
-}
+};
 </script>
 
 <style lang="scss" scoped>
+.page-main {
+  display: grid;
+}
 </style>
